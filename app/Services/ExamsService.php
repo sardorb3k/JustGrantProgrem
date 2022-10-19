@@ -33,7 +33,7 @@ class ExamsService implements ExamsServiceInterface
                 ->get();
             return $exams;
         } catch (\Exception $e) {
-            return dd($e->getMessage());
+            // return dd($e->getMessage());
         }
     }
 
@@ -136,19 +136,6 @@ class ExamsService implements ExamsServiceInterface
             return response()->json(['error' => $e->getMessage()]);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * Get exam results by id

@@ -55,10 +55,10 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label" for="fv-email">Teacher</label>
+                                <label class="form-label" for="teacher">Teacher</label>
                                 <div class="form-control-wrap ">
                                     <div class="form-control-select">
-                                        <select class="form-control" name="teacher_id" id="default-06" required>
+                                        <select class="form-control" name="teacher_id" id="teacher" required>
                                             @foreach ($teachers as $item)
                                                 <option value="{{ $item->id }}">
                                                     {{ $item->lastname . ' ' . $item->firstname }}
@@ -71,10 +71,10 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label" for="fv-email">Assistant</label>
+                                <label class="form-label" for="assistant">Assistant</label>
                                 <div class="form-control-wrap ">
                                     <div class="form-control-select">
-                                        <select class="form-control" name="assistant_id" id="default-06" required>
+                                        <select class="form-control" name="assistant_id" id="assistant" >
                                             @foreach ($assistants as $item)
                                                 <option value="{{ $item->id }}">
                                                     {{ $item->lastname . ' ' . $item->firstname }}

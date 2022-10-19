@@ -116,17 +116,17 @@ Route::group(['prefix' => 'exams'], function () {
     Route::get('/{id}', ['as' => 'exams.show', 'uses' => 'App\Http\Controllers\ExamsController@show'])->middleware(['auth', 'roles:superadmin,admin,teacher']);
     // -- Exam by id
     Route::get('/{id}/{examid}/getExamId', ['as' => 'exams.getByID', 'uses' => 'App\Http\Controllers\ExamsController@getExamId'])->middleware(['auth', 'roles:superadmin,admin,teacher,student']);
-    Route::post('/{id}/{examid}/getExamId', ['as' => 'exams.updateExam', 'uses' => 'App\Http\Controllers\ExamsController@updateExam'])->middleware(['auth', 'roles:superadmin,admin']);
+    Route::post('/{id}/{examid}/getExamId', ['as' => 'exams.updateExam', 'uses' => 'App\Http\Controllers\ExamsController@updateExam'])->middleware(['auth', 'roles:superadmin,admin,teacher']);
     // -- Exam Get create | i update -> POST
-    Route::post('/create', ['as' => 'exams.create', 'uses' => 'App\Http\Controllers\ExamsController@create'])->middleware(['auth', 'roles:superadmin,admin']);
+    Route::post('/create', ['as' => 'exams.create', 'uses' => 'App\Http\Controllers\ExamsController@create'])->middleware(['auth', 'roles:superadmin,admin,teacher']);
     // -- Exam Post store
-    Route::post('/', ['as' => 'exams.store', 'uses' => 'App\Http\Controllers\ExamsController@store'])->middleware(['auth', 'roles:superadmin,admin']);
+    Route::post('/', ['as' => 'exams.store', 'uses' => 'App\Http\Controllers\ExamsController@store'])->middleware(['auth', 'roles:superadmin,admin,teacher']);
     // -- Exam Get edit
-    Route::get('/{id}/edit', ['as' => 'exams.edit', 'uses' => 'App\Http\Controllers\ExamsController@edit'])->middleware(['auth', 'roles:superadmin,admin']);
+    Route::get('/{id}/edit', ['as' => 'exams.edit', 'uses' => 'App\Http\Controllers\ExamsController@edit'])->middleware(['auth', 'roles:superadmin,admin,teacher']);
     // -- Exam Put update
-    Route::put('/{id}', ['as' => 'exams.update', 'uses' => 'App\Http\Controllers\ExamsController@update'])->middleware(['auth', 'roles:superadmin,admin']);
+    Route::put('/{id}', ['as' => 'exams.update', 'uses' => 'App\Http\Controllers\ExamsController@update'])->middleware(['auth', 'roles:superadmin,admin,teacher']);
     // -- Exam Delete destroy
-    Route::delete('/{id}', ['as' => 'exams.destroy', 'uses' => 'App\Http\Controllers\ExamsController@destroy'])->middleware(['auth', 'roles:superadmin']);
+    Route::delete('/{id}', ['as' => 'exams.destroy', 'uses' => 'App\Http\Controllers\ExamsController@destroy'])->middleware(['auth', 'roles:superadmin,teacher']);
 });
 
 // Settings

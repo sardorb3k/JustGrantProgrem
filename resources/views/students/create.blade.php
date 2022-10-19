@@ -119,7 +119,7 @@
                                     <div class="form-icon form-icon-right">
                                         <em class="icon ni ni-gift"></em>
                                     </div>
-                                    <input type="text" class="form-control date-picker-alt" name="birthday" onkeydown="return false" 
+                                    <input type="text" class="form-control date-picker-alt" name="birthday" onkeydown="return false"
                                         tabindex="4" value="{{ old('birthday') }}" data-date-format="yyyy-mm-dd"
                                         required  autocomplete="off">
                                 </div>
@@ -167,7 +167,7 @@
                                         <em class="icon ni ni-home"></em>
                                     </div>
                                     <input type="text" class="form-control" id="fv-homeaddress" name="homeaddress"
-                                        value="{{ old('homeaddress') }}" tabindex="7" required>
+                                        value="{{ old('homeaddress') }}" tabindex="7">
                                 </div>
                             </div>
                         </div>
@@ -258,6 +258,38 @@
                                     <li>
                                         <div class="custom-control custom-control-sm custom-radio custom-control-pro">
                                             <input type="radio" class="custom-control-input" name="hear_about"
+                                                {{ old('hear_about') == 'instagram' ? 'checked' : '' }}
+                                                value="instagram" id="instagram"><label class="custom-control-label"
+                                                for="instagram">Instagram</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="custom-control custom-control-sm custom-radio custom-control-pro">
+                                            <input type="radio" class="custom-control-input" name="hear_about"
+                                                {{ old('hear_about') == 'telegram' ? 'checked' : '' }}
+                                                value="telegram" id="telegram"><label class="custom-control-label"
+                                                for="telegram">Telegram</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="custom-control custom-control-sm custom-radio custom-control-pro">
+                                            <input type="radio" class="custom-control-input" name="hear_about"
+                                                {{ old('hear_about') == 'youtube' ? 'checked' : '' }}
+                                                value="youtube" id="youtube"><label class="custom-control-label"
+                                                for="youtube">Youtube</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="custom-control custom-control-sm custom-radio custom-control-pro">
+                                            <input type="radio" class="custom-control-input" name="hear_about"
+                                                {{ old('hear_about') == 'facebook' ? 'checked' : '' }}
+                                                value="facebook" id="facebook"><label class="custom-control-label"
+                                                for="facebook">Facebook</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="custom-control custom-control-sm custom-radio custom-control-pro">
+                                            <input type="radio" class="custom-control-input" name="hear_about"
                                                 {{ old('hear_about') == 'flyer' ? 'checked' : '' }}
                                                 value="flyer" id="flyer"><label class="custom-control-label"
                                                 for="flyer">Flyer</label>
@@ -271,18 +303,6 @@
                                                 for="seminar">Seminar</label>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="custom-control custom-control-sm custom-radio custom-control-pro">
-                                            <input type="radio" class="custom-control-input" name="hear_about"
-                                                {{ old('hear_about') == 'others-radio' ? 'checked' : '' }}
-                                                value="others-radio" id="others-radio"><label
-                                                class="custom-control-label" for="others-radio">
-                                                <input type="text" id="others" name="hear_about"
-                                                    class="form-control" placeholder="Others">
-
-                                            </label>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -294,40 +314,9 @@
                                     <li>
                                         <div class="custom-control custom-control-sm custom-checkbox custom-control-pro">
                                             <input type="checkbox" class="custom-control-input" name="course[]"
-                                                value="englishlanguage" id="englishlanguage"><label
-                                                class="custom-control-label" for="englishlanguage">English
+                                                value="japaneselang" id="japaneselang"><label
+                                                class="custom-control-label" for="japaneselang">Japanese
                                                 Language</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-control-sm custom-checkbox custom-control-pro">
-                                            <input type="checkbox" class="custom-control-input" name="course[]"
-                                                value="webdevelopment" id="webdevelopment"><label
-                                                class="custom-control-label" for="webdevelopment">Web Development</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-control-sm custom-checkbox custom-control-pro">
-                                            <input type="checkbox" class="custom-control-input" name="course[]"
-                                                value="mobiledevelopment" id="mobiledevelopment"><label
-                                                class="custom-control-label" for="mobiledevelopment">Mobile App
-                                                Development</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div
-                                            class="custom-control custom-control-sm custom-checkbox custom-control-pro checked">
-                                            <input type="checkbox" class="custom-control-input" name="course[]"
-                                                value="gamedevelopment" id="gamedevelopment"><label
-                                                class="custom-control-label" for="gamedevelopment">Game
-                                                Development</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-control-sm custom-checkbox custom-control-pro">
-                                            <input type="checkbox" class="custom-control-input" name="course[]"
-                                                value="graphicdesign" id="graphicdesign"><label
-                                                class="custom-control-label" for="graphicdesign">Graphic Design</label>
                                         </div>
                                     </li>
                                 </ul>

@@ -33,7 +33,28 @@ class DashboardRepository implements DashboardRepositoryInterface
     // Teacher Dashboard
     public function teacherDashboard(): View
     {
-        return view('dashboard.teacher');
+        $date_y = date('Y');
+        $date_m = date('m');
+        $date_d = date('d');
+        $date_all = date('Y-m-d');
+        $attendance_n = DB::select("SELECT
+        CONCAT(firstname, ' ', lastname) AS fullname,
+        (
+        SELECT
+            COUNT(*)
+        FROM
+            attendance
+        WHERE
+            attendance.mark = 0 AND attendance.student_id = users.id AND YEAR(attendance.attendance_date) = $date_y AND MONTH(attendance.attendance_date) = $date_m
+    ) AS day
+    FROM
+        users
+    WHERE
+        users.role = 'student' AND
+        users.status = 'active'
+    ORDER BY day  DESC LIMIT 30");
+
+        return view('dashboard.teacher', compact('attendance_n'));
     }
     /**
      * Attendance Repository indexRepository
@@ -59,7 +80,8 @@ class DashboardRepository implements DashboardRepositoryInterface
     FROM
         users
     WHERE
-        users.role = 'student'
+        users.role = 'student' AND
+        users.status = 'active'
     ORDER BY day  DESC LIMIT 30");
 
         $student_hear = DB::select("SELECT coalesce(hear_about, 'Null') as title, count(*) as result FROM `users` where hear_about is not null  and hear_about != 'others-radio' GROUP BY hear_about");
@@ -182,7 +204,7 @@ class DashboardRepository implements DashboardRepositoryInterface
         ]);
 
         $attendance = app(StudentsServiceInterface::class)->getStudentByAttendance($user_id);
-        
+
         // Payments
         $payments = DB::select(DB::raw("SELECT
         payments.amount,

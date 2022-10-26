@@ -42,18 +42,17 @@ class LoginController extends Controller
     }
 
     /**
-     * Get the failed login response instance.
+     * Get the needed authorization credentials from the request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * @return array
      */
-    protected function sendFailedLoginResponse(Request $request)
+    protected function credentials(Request $request)
     {
-        throw ValidationException::withMessages([
-            'phone' => [trans('auth.failed')],
-        ]);
+        return [
+            $this->username() => str_replace(["(", ")", "-", " ", "_"], "", $request['phone']),
+            'password' => $request['password']
+        ];
     }
 
     /**
@@ -68,14 +67,6 @@ class LoginController extends Controller
         if (is_numeric($login)) {
             $field = 'phone';
         }
-        // elseif (filter_var($login, FILTER_VALIDATE_EMAIL)) {
-        //     $field = 'email';
-        // } else {
-        //     $field = 'username';
-        // }
-
-        request()->merge([$field => $login]);
-
         return $field;
     }
 }

@@ -138,7 +138,7 @@ class DashboardRepository implements DashboardRepositoryInterface
         // $students = GroupItems::join('users', 'group_items.student_id', '=', 'users.id')->select("users.id", "group_items.id as group_id", "users.lastname", "users.firstname", "users.phone")->where('group_id', $group->id)->get();
         $groups = DB::select(DB::raw("SELECT
         groups.name,
-        groups.level,
+        gl.name as level,
         groups.lessonstarttime,
         groups.lessonendtime,
         groups.days,
@@ -169,6 +169,7 @@ class DashboardRepository implements DashboardRepositoryInterface
     FROM
         `group_students`
     LEFT JOIN groups ON groups.id = group_students.group_id
+    LEFT JOIN group_level as gl ON gl.id = groups.level
     WHERE
         group_students.student_id = :user_id LIMIT 20;"), [
             'user_id' => $user_id
@@ -218,7 +219,7 @@ class DashboardRepository implements DashboardRepositoryInterface
         payments.student_id = :user_id LIMIT 20"), [
             'user_id' => $user_id
         ]);
-        // dd($attendance);
+        dd($groups);
         return view('dashboard.student', compact('groups', 'exams', 'attendance', 'payments'));
     }
 }

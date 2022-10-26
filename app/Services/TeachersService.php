@@ -110,7 +110,7 @@ class TeachersService implements TeachersServiceInterface
                 unlink($file_path);
             }
             $image = $request->file('imageupload');
-            $name = $request->firstname . ' ' . $request->lastname . time() . '.' . $image->getClientOriginalExtension();
+            $name = time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('/uploads/teacher');
             $image->move($destinationPath, $name);
         }
@@ -118,7 +118,7 @@ class TeachersService implements TeachersServiceInterface
         $teacher->update([
             'lastname' => $request->lastname,
             'firstname' => $request->firstname,
-            'phone' => str_replace(["(", ")", "-", " "], "", $request->phone),
+            'phone' => str_replace(["(", ")", "-", " ", "+"], "", $request->phone),
             'birthday' => $request->birthday,
             'gender' => $request->gender,
             'role' => $request->role,
@@ -174,7 +174,7 @@ class TeachersService implements TeachersServiceInterface
         /**
          *  Validate request
          */
-        $request['phone'] = '998' . str_replace(["(", ")", "-", " "], "", $request->phone);
+        $request['phone'] = '998' . str_replace(["(", ")", "-", " ", "+"], "", $request->phone);
         $req = $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
@@ -189,7 +189,7 @@ class TeachersService implements TeachersServiceInterface
         // image upload to public/images folder and store image name to database students table
         if ($request->hasFile('imageupload')) {
             $image = $request->file('imageupload');
-            $name = time() . '-' . $request['phone'] . '.' . $image->getClientOriginalExtension();
+            $name = time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('/uploads/teacher');
             $image->move($destinationPath, $name);
         }

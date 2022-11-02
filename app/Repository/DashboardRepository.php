@@ -33,28 +33,7 @@ class DashboardRepository implements DashboardRepositoryInterface
     // Teacher Dashboard
     public function teacherDashboard(): View
     {
-        $date_y = date('Y');
-        $date_m = date('m');
-        $date_d = date('d');
-        $date_all = date('Y-m-d');
-        $attendance_n = DB::select("SELECT
-        CONCAT(firstname, ' ', lastname) AS fullname,
-        (
-        SELECT
-            COUNT(*)
-        FROM
-            attendance
-        WHERE
-            attendance.mark = 0 AND attendance.student_id = users.id AND YEAR(attendance.attendance_date) = $date_y AND MONTH(attendance.attendance_date) = $date_m
-    ) AS day
-    FROM
-        users
-    WHERE
-        users.role = 'student' AND
-        users.status = 'active'
-    ORDER BY day  DESC LIMIT 30");
-
-        return view('dashboard.teacher', compact('attendance_n'));
+        return view('dashboard.teacher');
     }
     /**
      * Attendance Repository indexRepository
@@ -80,8 +59,8 @@ class DashboardRepository implements DashboardRepositoryInterface
     FROM
         users
     WHERE
-        users.role = 'student' AND
-        users.status = 'active'
+        users.status = 'active' AND
+        users.role = 'student'
     ORDER BY day  DESC LIMIT 30");
 
         $student_hear = DB::select("SELECT coalesce(hear_about, 'Null') as title, count(*) as result FROM `users` where hear_about is not null  and hear_about != 'others-radio' GROUP BY hear_about");
@@ -92,8 +71,7 @@ class DashboardRepository implements DashboardRepositoryInterface
         $audience_group_count = DB::select("SELECT count(*) as count FROM `groups`");
         // dd($date_all);
         $payments = DB::select("SELECT
-                    DISTINCT users.id,
-                    pp.group_id,
+                    DISTINCT users.id as userId,
                     CONCAT(
                         users.firstname,
                         ' ',
@@ -105,12 +83,12 @@ class DashboardRepository implements DashboardRepositoryInterface
                 LEFT JOIN users ON users.id = pp.student_id
                 WHERE
                     #pp.payment_end >= $date_all and
+                    users.status = 'active' and
                     pp.payment_end = (select max(p.payment_end) from payments as p where users.id = p.student_id)
                 ORDER BY
                     pp.payment_end ASC
                 LIMIT 30;");
 
-        // $students = GroupItems::join('users', 'group_items.student_id', '=', 'users.id')->select("users.id", "group_items.id as group_id", "users.lastname", "users.firstname", "users.phone")->where('group_id', $group->id)->get();
         $groups = DB::select(
             DB::raw("select student_id, g.name,
         concat(uo.lastname, ' ', uo.firstname) as assistant,
@@ -219,7 +197,7 @@ class DashboardRepository implements DashboardRepositoryInterface
         payments.student_id = :user_id LIMIT 20"), [
             'user_id' => $user_id
         ]);
-        dd($groups);
+        // dd($attendance);
         return view('dashboard.student', compact('groups', 'exams', 'attendance', 'payments'));
     }
 }

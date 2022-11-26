@@ -35,7 +35,7 @@ class GroupsRepository implements GroupsRepositoryInterface
     {
         $groups = $this->groupService->getAllGroupsPagination(10);
         $count = $this->groupService->getCountGroups();
-
+        dd($groups);
         return view('groups.index', compact('groups', 'count'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }

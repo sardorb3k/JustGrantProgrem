@@ -32,7 +32,6 @@ class ExamsRepository implements ExamsRepositoryInterface
         $groups = $this->groupService->getAllGroupsPagination(10) ?? [];
         // $exams = [];
         // $groups = [];
-        dd($groups);
         return view('exams.index', compact('exams', 'groups'));
     }
 

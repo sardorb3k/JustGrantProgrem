@@ -9,7 +9,7 @@
                     <p>You have a total of  groups.</p>
                 </div>
             </div><!-- .nk-block-head-content -->
-            @if (Auth::user()->role == 'superadmin' or Auth::user()->role == 'teacher')
+            @if (Auth::user()->role == 'superadmin')
             <div class="nk-block-head-content">
                 <div class="toggle-wrap nk-block-tools-toggle">
                     <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em
@@ -115,7 +115,7 @@
             @endforeach
         </tbody>
     </table>
-    @if (Auth::user()->role == 'superadmin' or Auth::user()->role == 'teacher')
+    @if (Auth::user()->role == 'superadmin')
         <div class="modal fade" role="dialog" id="group-create">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">

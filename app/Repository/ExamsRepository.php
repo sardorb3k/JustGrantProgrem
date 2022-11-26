@@ -78,6 +78,7 @@ class ExamsRepository implements ExamsRepositoryInterface
         ]);
         // Group information
         $group = $this->groupService->getGroupInfoById($request->group_id);
+
         $exam = new Exams;
         $exam->exam_type = $request->exam;
         $exam->group_id = $group[0]->id;

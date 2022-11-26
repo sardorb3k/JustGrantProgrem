@@ -89,6 +89,7 @@ class GroupsService implements GroupsServiceInterface
                     ->where('ut.id', $userid)
                     ->latest('groups.created_at')
                     ->get();
+                dd($groups);
             } else {
                 $groups = $this->groups
                     ->leftJoin('users as ut', 'ut.id', '=', 'groups.teacher_id')

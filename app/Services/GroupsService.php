@@ -102,7 +102,6 @@ class GroupsService implements GroupsServiceInterface
         }
         return $groups ?? [];
     }
-
     /**
      * Get count groups.
      *

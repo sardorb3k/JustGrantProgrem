@@ -63,7 +63,7 @@
                     <td class="nk-tb-col">
                         <a href="{{ route('exams.show', $exam->id) }}">
                             <span class="text-capitalize">
-                                {{ ucfirst($exam->level) }}
+                                {{ ucfirst($exam->level) }} {{ $groups->where('id', $exam->group_id)->first()->name }}
                             </span>
                         </a>
                     </td>

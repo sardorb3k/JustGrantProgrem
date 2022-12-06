@@ -129,7 +129,7 @@
                                 <label class="form-label" for="listening">Listening</label>
                                 <div class="form-control-wrap">
                                     <input type="text" name="exam[listening]" class="form-control exam-result-input"
-                                        id="listening" @disabled(Auth::user()->getRole() != 'superadmin') value="{{ old('exam[listening]') }}">
+                                        id="listening" @disabled(Auth::user()->getRole() == 'superadmin' || Auth::user()->getRole() == 'teacher') value="{{ old('exam[listening]') }}">
                                 </div>
                             </div>
                         </div>
@@ -138,7 +138,7 @@
                                 <label class="form-label" for="reading">Reading</label>
                                 <div class="form-control-wrap">
                                     <input type="text" name="exam[reading]" class="form-control exam-result-input"
-                                        id="reading" @disabled(Auth::user()->getRole() != 'superadmin') value="{{ old('exam[reading]') }}">
+                                        id="reading" @disabled(Auth::user()->getRole() == 'superadmin' || Auth::user()->getRole() == 'teacher') value="{{ old('exam[reading]') }}">
                                 </div>
                             </div>
                         </div>
@@ -147,7 +147,7 @@
                                 <label class="form-label" for="writing">Writing</label>
                                 <div class="form-control-wrap">
                                     <input type="text" name="exam[writing]" class="form-control exam-result-input"
-                                        id="writing" @disabled(Auth::user()->getRole() != 'superadmin') value="{{ old('exam[writing]') }}">
+                                        id="writing" @disabled(Auth::user()->getRole() == 'superadmin' || Auth::user()->getRole() == 'teacher') value="{{ old('exam[writing]') }}">
                                 </div>
                             </div>
                         </div>
@@ -156,7 +156,7 @@
                                 <label class="form-label" for="speaking">Speaking</label>
                                 <div class="form-control-wrap">
                                     <input type="text" name="exam[speaking]" class="form-control exam-result-input"
-                                        id="speaking" @disabled(Auth::user()->getRole() != 'superadmin') value="{{ old('exam[speaking]') }}">
+                                        id="speaking" @disabled(Auth::user()->getRole() == 'superadmin' || Auth::user()->getRole() == 'teacher') value="{{ old('exam[speaking]') }}">
                                 </div>
                             </div>
                         </div>
@@ -165,7 +165,7 @@
                                 <label class="form-label" for="grammar">Grammar</label>
                                 <div class="form-control-wrap">
                                     <input type="text" name="exam[grammar]" class="form-control exam-result-input"
-                                        id="grammar" @disabled(Auth::user()->getRole() != 'superadmin') value="{{ old('exam[grammar]') }}">
+                                        id="grammar" @disabled(Auth::user()->getRole() == 'superadmin' || Auth::user()->getRole() == 'teacher') value="{{ old('exam[grammar]') }}">
                                 </div>
                             </div>
                         </div>
@@ -174,7 +174,7 @@
                                 <label class="form-label" for="team">Team</label>
                                 <div class="form-control-wrap">
                                     <input type="text" name="exam[team]" class="form-control exam-result-input"
-                                        id="team" @disabled(Auth::user()->getRole() != 'superadmin') value="{{ old('exam[team]') }}">
+                                        id="team" @disabled(Auth::user()->getRole() == 'superadmin' || Auth::user()->getRole() == 'teacher') value="{{ old('exam[team]') }}">
                                 </div>
                             </div>
                         </div>
@@ -184,7 +184,7 @@
                     <input type="hidden" name="student_id" id="student_id">
                     <input type="hidden" name="exam_id" id="exam_id">
                     <p>Exam result: <span class="badge badge-secondary" id="result">0</span></p>
-                    @if (Auth::user()->role == 'superadmin')
+                    @if (Auth::user()->role == 'superadmin' || Auth::user()->role == 'teacher')
                         <span class="sub-text"><button type="button" id="exam-save"
                                 class="btn btn-primary">Submit</button></span>
                     @endif
@@ -234,7 +234,7 @@
             });
         });
 
-        @if (Auth::user()->role == 'superadmin')
+        @if (Auth::user()->role == 'superadmin' || Auth::user()->role == 'teacher')
             $("#exam-save").click(function(e) {
                 e.preventDefault();
                 // Backend Validation

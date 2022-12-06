@@ -129,7 +129,7 @@
                                 <label class="form-label" for="listening">Listening</label>
                                 <div class="form-control-wrap">
                                     <input type="text" name="exam[listening]" class="form-control exam-result-input"
-                                        id="listening" @disabled(Auth::user()->getRole() == 'superadmin' || Auth::user()->getRole() == 'teacher') value="{{ old('exam[listening]') }}">
+                                        id="listening" @if (Auth::user()->getRole() == 'student' || Auth::user()->getRole() == 'admin' || Auth::user()->getRole() == 'assistant') disabled @endif value="{{ old('exam[listening]') }}">
                                 </div>
                             </div>
                         </div>
@@ -137,8 +137,8 @@
                             <div class="form-group">
                                 <label class="form-label" for="reading">Reading</label>
                                 <div class="form-control-wrap">
-                                    <input type="text" name="exam[reading]" class="form-control exam-result-input"
-                                        id="reading" @disabled(Auth::user()->getRole() == 'superadmin' || Auth::user()->getRole() == 'teacher') value="{{ old('exam[reading]') }}">
+                                    <input type="text" name="exam[reading]" @if (Auth::user()->getRole() == 'student' || Auth::user()->getRole() == 'admin' || Auth::user()->getRole() == 'assistant') disabled @endif class="form-control exam-result-input"
+                                        id="reading" value="{{ old('exam[reading]') }}">
                                 </div>
                             </div>
                         </div>
@@ -146,8 +146,8 @@
                             <div class="form-group">
                                 <label class="form-label" for="writing">Writing</label>
                                 <div class="form-control-wrap">
-                                    <input type="text" name="exam[writing]" class="form-control exam-result-input"
-                                        id="writing" @disabled(Auth::user()->getRole() == 'superadmin' || Auth::user()->getRole() == 'teacher') value="{{ old('exam[writing]') }}">
+                                    <input type="text" name="exam[writing]" @if (Auth::user()->getRole() == 'student' || Auth::user()->getRole() == 'admin' || Auth::user()->getRole() == 'assistant') disabled @endif class="form-control exam-result-input"
+                                        id="writing" value="{{ old('exam[writing]') }}">
                                 </div>
                             </div>
                         </div>
@@ -155,8 +155,8 @@
                             <div class="form-group">
                                 <label class="form-label" for="speaking">Speaking</label>
                                 <div class="form-control-wrap">
-                                    <input type="text" name="exam[speaking]" class="form-control exam-result-input"
-                                        id="speaking" @disabled(Auth::user()->getRole() == 'superadmin' || Auth::user()->getRole() == 'teacher') value="{{ old('exam[speaking]') }}">
+                                    <input type="text" name="exam[speaking]" @if (Auth::user()->getRole() == 'student' || Auth::user()->getRole() == 'admin' || Auth::user()->getRole() == 'assistant') disabled @endif class="form-control exam-result-input"
+                                        id="speaking" value="{{ old('exam[speaking]') }}">
                                 </div>
                             </div>
                         </div>
@@ -164,8 +164,8 @@
                             <div class="form-group">
                                 <label class="form-label" for="grammar">Grammar</label>
                                 <div class="form-control-wrap">
-                                    <input type="text" name="exam[grammar]" class="form-control exam-result-input"
-                                        id="grammar" @disabled(Auth::user()->getRole() == 'superadmin' || Auth::user()->getRole() == 'teacher') value="{{ old('exam[grammar]') }}">
+                                    <input type="text" name="exam[grammar]" @if (Auth::user()->getRole() == 'student' || Auth::user()->getRole() == 'admin' || Auth::user()->getRole() == 'assistant') disabled @endif class="form-control exam-result-input"
+                                        id="grammar" value="{{ old('exam[grammar]') }}">
                                 </div>
                             </div>
                         </div>
@@ -173,8 +173,8 @@
                             <div class="form-group">
                                 <label class="form-label" for="team">Team</label>
                                 <div class="form-control-wrap">
-                                    <input type="text" name="exam[team]" class="form-control exam-result-input"
-                                        id="team" @disabled(Auth::user()->getRole() == 'superadmin' || Auth::user()->getRole() == 'teacher') value="{{ old('exam[team]') }}">
+                                    <input type="text" name="exam[team]" @if (Auth::user()->getRole() == 'student' || Auth::user()->getRole() == 'admin' || Auth::user()->getRole() == 'assistant') disabled @endif class="form-control exam-result-input"
+                                        id="team" value="{{ old('exam[team]') }}">
                                 </div>
                             </div>
                         </div>

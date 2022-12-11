@@ -17,6 +17,12 @@
     <script src="{{ asset('assets/js/autonumeric.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.inputmask.min.js') }}"></script>
+    <script src="{{ asset('js/libs/selectize.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/selectize.bootstrap5.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
+    <script src="{{ asset('js/libs/toastr.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/nano.pickr.css') }}">
+    <script src="{{ asset('js/libs/pickr.min.js') }}"></script>
     <link id="skin-default" rel="stylesheet" href="{{ asset('assets/css/theme.css?ver=2.9.1') }}">
 </head>
 
@@ -333,6 +339,8 @@
     <script src="{{ asset('assets/js/jquery.inputmask.min.js') }}"></script>
     <script src="{{ asset('assets/js/libs/fullcalendar.js') }}"></script>
     <script src="{{ asset('assets/js/apps/calendar.js') }}"></script>
+    <script src="{{ asset('assets/js/libs/jkanban.js') }}"></script>
+    <script src="{{ asset('assets/js/apps/kanban.js') }}"></script>
     <!-- select region modal -->
 
 </html>

@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\GroupsController;
 use App\Http\Controllers\AuthProfileController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\BoardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -144,6 +146,22 @@ Route::group(['prefix' => 'settings'], function () {
     Route::put('/groupLevel/{id}', 'App\Http\Controllers\SettingsController@groupLevelUpdate')->name('settings.groupLevelUpdate')->middleware(['auth', 'roles:superadmin']);
 });
 
+Route::group(['prefix' => 'tasks', 'middleware' => ['auth']], function () {
+    Route::get('/', [TaskController::class, 'index'])->name('tasks.index')->middleware(['roles:superadmin']);
+    Route::post('/', [TaskController::class, 'store'])->name('tasks.store')->middleware(['roles:superadmin']);
+    Route::put('/sync', [TaskController::class, 'sync'])->name('tasks.sync')->middleware(['roles:superadmin']);
+    Route::put('/', [TaskController::class, 'update'])->name('tasks.update')->middleware(['roles:superadmin']);
+    Route::put('/updateBoard', [TaskController::class, 'updateBoard'])->name('tasks.updateBoard')->middleware(['roles:superadmin']);
+    Route::delete('/', [TaskController::class, 'destroy'])->name('tasks.destroy')->middleware(['roles:superadmin']);
+});
+
+Route::group(['prefix' => 'boards', 'middleware' => ['auth']], function () {
+    Route::get('/', [BoardController::class, 'index'])->name('boards.index')->middleware(['roles:superadmin']);
+    Route::post('/', [BoardController::class, 'store'])->name('boards.store')->middleware(['roles:superadmin']);
+    Route::put('/', [BoardController::class, 'update'])->name('boards.update')->middleware(['roles:superadmin']);
+    Route::put('/reorder', [BoardController::class, 'reorder'])->name('boards.reorder')->middleware(['roles:superadmin']);
+    Route::delete('/', [BoardController::class, 'delete'])->name('boards.delete')->middleware(['roles:superadmin']);
+});
 
 // Language routes
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);

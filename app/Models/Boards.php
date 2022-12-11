@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Boards extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'status', 'visibility', 'workspace', 'issuer_id', 'color', 'order_number', 'board_id'];
+
+    public $timestamps = false;
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class)->orderBy('order_number');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
